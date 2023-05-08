@@ -1,6 +1,14 @@
 package gui.swing;
 
 import App.Function;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javax.swing.JFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +25,9 @@ public class MainFrame extends JFrame {
     private JTextField inputRightBorder;
     private JComboBox<String> inputFunction;
     private JButton submitButton;
+    private JFXPanel jfxPanel;
     private OutputFrame outputFrame;
-    final private Function[] functions;
+    private Function[] functions;
 
     public MainFrame(String title, Function... functions) {
         super(title);
@@ -35,6 +44,7 @@ public class MainFrame extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+        Platform.runLater(() -> initFX(jfxPanel));
 
         for (Function function :
                 this.functions) {
@@ -83,5 +93,38 @@ public class MainFrame extends JFrame {
                 functionIndex = inputFunction.getSelectedIndex();
             }
         });
+    }
+
+    public static void initAndShowGUI() {
+        // This method is invoked on the EDT thread
+        JFrame frame = new JFrame("Swing and JavaFX");
+        final JFXPanel fxPanel = new JFXPanel();
+        frame.add(fxPanel);
+        frame.setSize(300, 200);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Platform.runLater(() -> initFX(fxPanel));
+    }
+
+    public static void initFX(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createScene();
+        fxPanel.setScene(scene);
+    }
+
+    public static Scene createScene() {
+        Group root = new Group();
+        Scene scene = new Scene(root, Color.ALICEBLUE);
+        Text text = new Text();
+
+        text.setX(40);
+        text.setY(100);
+        text.setFont(new Font(25));
+        text.setText("Welcome JavaFX!");
+
+        root.getChildren().add(text);
+
+        return (scene);
     }
 }

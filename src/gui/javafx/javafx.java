@@ -11,11 +11,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 public class javafx extends Application {
 
@@ -32,7 +30,7 @@ public class javafx extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // Create a ComboBox with the three functions
+        // Create a ComboBox with functions
         functionComboBox = new ComboBox<>();
         for (Function function:
              functions) {
