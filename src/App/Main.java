@@ -4,8 +4,22 @@ import gui.swing.MainFrame;
 import javax.swing.*;
 import java.text.NumberFormat;
 import java.util.Scanner;
-public class Main {
+import javafx.application.Application;
+import javafx.stage.Stage;
+import gui.javafx.javafx;
+import static javafx.application.Application.launch;
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Create an instance of the FunctionGrapher class
+        javafx grapher = new javafx();
+
+        // Call the start method on the grapher instance
+        grapher.start(primaryStage);
+    }
     public static void main(String[] args) {
+//        javafx fxjava = new javafx(args);
+        launch(args);
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the value of x: ");
         double x = scanner.nextDouble();
