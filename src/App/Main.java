@@ -1,5 +1,7 @@
 package App;
 
+import gui.swing.MainFrame;
+import javax.swing.*;
 import java.text.NumberFormat;
 import java.util.Scanner;
 public class Main {
@@ -63,6 +65,9 @@ public class Main {
                                 , 2
                         )
                 );
+
+        JFrame frame = new MainFrame("Frame", expression, expression2);
+        frame.setVisible(true);
 
         final NumberFormat nf = NumberFormat.getInstance();
         System.out.format("f1(x) = %s", expression.toPrettyString(nf)).println();
