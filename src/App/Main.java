@@ -3,26 +3,23 @@ package App;
 import gui.swing.MainFrame;
 import javax.swing.*;
 import java.text.NumberFormat;
-import java.util.Scanner;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import gui.javafx.javafx;
 import static javafx.application.Application.launch;
 public class Main extends Application {
+    private static Function[] functions;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Create an instance of the FunctionGrapher class
-        javafx grapher = new javafx();
+        javafx grapher = new javafx(functions);
 
         // Call the start method on the grapher instance
         grapher.start(primaryStage);
     }
     public static void main(String[] args) {
-//        javafx fxjava = new javafx(args);
-        launch(args);
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the value of x: ");
-        double x = scanner.nextDouble();
+        final double x = 1.0;
         final Function expression =
                 new Sum(
                         new Cos(
@@ -80,8 +77,12 @@ public class Main extends Application {
                         )
                 );
 
-        JFrame frame = new MainFrame("Frame", expression, expression2);
+        functions = new Function[]{expression, expression2};
+
+        JFrame frame = new MainFrame("Frame", functions);
         frame.setVisible(true);
+
+        launch(args);
 
         final NumberFormat nf = NumberFormat.getInstance();
         System.out.format("f1(x) = %s", expression.toPrettyString(nf)).println();

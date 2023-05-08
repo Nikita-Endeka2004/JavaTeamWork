@@ -1,4 +1,5 @@
 package gui.javafx;
+import App.Function;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -13,22 +14,30 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+
 public class javafx extends Application {
 
     private ComboBox<String> functionComboBox;
     private TextField pointTextField;
     private LineChart<Number, Number> chart;
 
+    private Function[] functions;
+
+    public javafx(Function... functions) {
+        this.functions = functions;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         // Create a ComboBox with the three functions
         functionComboBox = new ComboBox<>();
-        functionComboBox.getItems().addAll(
-                "sin(x)^2",
-                "4*x^3 + 8*x^2 - 2*x + 9",
-                "cbrt(abs(x))"
-        );
+        for (Function function:
+             functions) {
+            functionComboBox.getItems().add(function.toPrettyString(NumberFormat.getInstance()));
+        }
 
         // Create a TextField for entering a point
         Label pointLabel = new Label("Point:");
@@ -71,31 +80,18 @@ public class javafx extends Application {
         chart.getData().clear();
 
         // Create a series for the function
-        String function = functionComboBox.getValue();
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        series.setName(function);
+        series.setName(functionComboBox.getValue());
 
         // Add data points to the series that represent the selected function
+        Function function = functions[functionComboBox.getSelectionModel().getSelectedIndex()];
         for (double x = -10.0; x <= 10.0; x += 0.1) {
-            double y = evaluateFunction(function, x);
+            double y = function.evaluate(x);
             series.getData().add(new XYChart.Data<>(x, y));
         }
 
         // Add the series to the chart
         chart.getData().add(series);
-    }
-
-    private double evaluateFunction(String function, double x) {
-        switch (function) {
-            case "sin(x)^2":
-                return Math.pow(Math.sin(x), 2);
-            case "4*x^3 + 8*x^2 - 2*x + 9":
-                return 4 * Math.pow(x, 3) + 8 * Math.pow(x, 2) - 2 * x + 9;
-            case "cbrt(abs(x))":
-                return Math.cbrt(Math.abs(x));
-            default:
-                throw new IllegalArgumentException("Invalid function: " + function);
-        }
     }
 }
 
