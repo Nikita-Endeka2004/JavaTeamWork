@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 public class MainFrame extends JFrame {
 
     private JPanel mainPanel;
-    private JPanel graphPanel;
     private JPanel inputPanel;
     private JTextField inputX;
     private JTextField inputLeftBorder;
