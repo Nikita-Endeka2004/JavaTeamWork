@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 
 public class javafx extends Application {
 

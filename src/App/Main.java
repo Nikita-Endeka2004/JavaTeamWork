@@ -76,13 +76,12 @@ public class Main extends Application {
                                 , 2
                         )
                 );
-
+        launch(args);
         functions = new Function[]{expression, expression2};
 
         JFrame frame = new MainFrame("Frame", functions);
         frame.setVisible(true);
 
-        launch(args);
 
         final NumberFormat nf = NumberFormat.getInstance();
         System.out.format("f1(x) = %s", expression.toPrettyString(nf)).println();
