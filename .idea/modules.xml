@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SwingUI/SwingUI.iml" filepath="$PROJECT_DIR$/SwingUI/SwingUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaFxUI/javaFxUI.iml" filepath="$PROJECT_DIR$/javaFxUI/javaFxUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/teamProject.iml" filepath="$PROJECT_DIR$/teamProject.iml" />
     </modules>
   </component>
