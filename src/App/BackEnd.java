@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BackEnd  {
     private Function current;
-    private ArrayList<Function> functionsList;
+    final private ArrayList<Function> functionsList = new ArrayList<>();
 
     private NumberFormat nf = NumberFormat.getInstance();
 
