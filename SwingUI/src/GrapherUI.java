@@ -12,6 +12,8 @@ public class GrapherUI extends JFrame {
     JTextField textLeftBound = new JTextField(10);
     JTextField textRightBound = new JTextField(10);
     JTextField textDelta = new JTextField(10);
+
+    JTextArea textDerivative = new JTextArea();
     JComboBox<String> availableFunctions = new JComboBox<>();
     JButton button = new JButton("Compute");
 
@@ -56,13 +58,19 @@ public class GrapherUI extends JFrame {
         add(inputPanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(button);
+        buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.add(button, BorderLayout.NORTH);
+        textDerivative.setLineWrap(true);
+        textDerivative.setSize(100,600);
+        textDerivative.setText("derivative");
+        buttonPanel.add(textDerivative, BorderLayout.SOUTH);
         add(buttonPanel, BorderLayout.CENTER);
 
         JPanel outputPanel = new JPanel();
         outputPanel.add(new JLabel("f(x)="));
         outputPanel.add(availableFunctions);
         add(outputPanel, BorderLayout.SOUTH);
+
 
         JPanel drawPanel = new JPanel();
         drawPanel.add(chartPanel);

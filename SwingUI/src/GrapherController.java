@@ -29,7 +29,8 @@ public class GrapherController implements Runnable {
             yData = logic.evaluateCurrent(xData);
             ui.chart.updateXYSeries("f(x)", xData, yData, null);
 
-            logic.evaluateDerivative();
+            String derivative = logic.evaluateDerivative();
+            ui.textDerivative.setText("Derivative: " + derivative);
             xData = logic.evaluateRange(left, right, delta);
             yData = logic.evaluateCurrent(xData);
             ui.chart.updateXYSeries("f'(x)", xData, yData, null);
